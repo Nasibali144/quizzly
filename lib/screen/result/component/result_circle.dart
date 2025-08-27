@@ -5,7 +5,9 @@ import 'package:quizzly/core/theme/strings.dart';
 import 'package:quizzly/core/theme/text_styles.dart';
 
 class ResultCircle extends StatelessWidget {
+  final int result;
   const ResultCircle({
+    required this.result,
     super.key,
   });
 
@@ -35,7 +37,7 @@ class ResultCircle extends StatelessWidget {
               ),
               // AppDimens.h
               Text(
-                "100",
+                "$result",
                 style: AppTextStyles.dmSansBold28.copyWith(fontSize: 32),
               ),
             ],

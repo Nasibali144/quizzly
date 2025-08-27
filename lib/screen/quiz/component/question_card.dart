@@ -5,7 +5,15 @@ import 'package:quizzly/core/theme/strings.dart';
 import 'package:quizzly/core/theme/text_styles.dart';
 
 class QuestionCard extends StatelessWidget {
+  final int time;
+  final String question;
+  final String questionNumber;
+  final int totalTime;
   const QuestionCard({
+    required this.time,
+    required this.totalTime,
+    required this.question,
+    required this.questionNumber,
     super.key,
   });
 
@@ -23,9 +31,9 @@ class QuestionCard extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text(AppStrings.question("04/10"), style: AppTextStyles.dmSansMedium22.copyWith(fontSize: AppDimens.d18)),
+                Text(AppStrings.question(questionNumber), style: AppTextStyles.dmSansMedium22.copyWith(fontSize: AppDimens.d18)),
                 AppDimens.h30,
-                Text("5 + 3 = ?", style: AppTextStyles.dmSansMedium20.copyWith(color: AppColors.black)),
+                Text(question, style: AppTextStyles.dmSansMedium20.copyWith(color: AppColors.black)),
                 AppDimens.h20,
               ],
             ),
@@ -46,14 +54,14 @@ class QuestionCard extends StatelessWidget {
                   shape: BoxShape.circle,
                   color: AppColors.white,
                 ),
-                child: const CircularProgressIndicator(
+                child: CircularProgressIndicator(
                   color: AppColors.deepPurple,
-                  value: 0.75,
+                  value: time / totalTime,
                   strokeAlign: BorderSide.strokeAlignInside,
                 ),
               ),
               Text(
-                "14",
+                "$time",
                 style: AppTextStyles.dmSansBold28.copyWith(fontSize: AppDimens.d20),
               )
             ],

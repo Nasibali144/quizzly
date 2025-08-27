@@ -10,7 +10,16 @@ sealed class AppRoutes {
 
   static Map<String, WidgetBuilder> routes = {
     home : (context) => const HomeScreen(),
-    quiz : (context) => const QuizScreen(),
-    result : (context) => const ResultScreen(),
+    quiz : (context) {
+      int index = ModalRoute.of(context)?.settings.arguments as int? ?? 0;
+      return QuizScreen(index: index);
+    },
+    result : (context) {
+      List<int> items = ModalRoute.of(context)!.settings.arguments as List<int>;
+      return ResultScreen(
+        correctAnswerCount: items[0],
+        levelIndex: items[1],
+      );
+    },
   };
 }

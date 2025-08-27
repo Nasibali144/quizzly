@@ -7,7 +7,7 @@ class QuizzlyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: AppRoutes.result,
+      initialRoute: AppRoutes.home,
       routes: AppRoutes.routes,
     );
   }

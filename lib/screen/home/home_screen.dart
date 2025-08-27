@@ -4,8 +4,8 @@ import 'package:quizzly/core/theme/colors.dart';
 import 'package:quizzly/core/theme/dimens.dart';
 import 'package:quizzly/core/theme/strings.dart';
 import 'package:quizzly/core/theme/text_styles.dart';
+import 'package:quizzly/data/data_source.dart';
 import 'package:quizzly/screen/home/component/outline_button.dart';
-import 'package:quizzly/screen/quiz/quiz_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,14 +15,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  void goQuizScreen(int level) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const QuizScreen(),
-        settings: const RouteSettings(name: AppRoutes.quiz),
-      ),
-    );
+  void goQuizScreen(int index) {
+    Navigator.pushNamed(context, AppRoutes.quiz, arguments: index);
   }
 
   @override
@@ -52,14 +46,20 @@ class _HomeScreenState extends State<HomeScreen> {
 
               // choose level:
               Text(AppStrings.chooseLevel, style: AppTextStyles.dmSansBold24),
-              AppDimens.h30,
 
               // buttons:
-              AppOutlineButton(title: AppStrings.level(1), onPressed: () => goQuizScreen(1),),
-              AppDimens.h30,
-              AppOutlineButton(title: AppStrings.level(2)),
-              AppDimens.h30,
-              AppOutlineButton(title: AppStrings.level(3)),
+              for (int i = 0; i < levels.length; i++)
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    AppDimens.h30,
+                    AppOutlineButton(
+                      title: AppStrings.level(i + 1),
+                      onPressed: () => goQuizScreen(i),
+                    ),
+                  ],
+                ),
             ],
           ),
         ),

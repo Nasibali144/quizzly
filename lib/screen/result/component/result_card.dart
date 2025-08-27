@@ -5,7 +5,11 @@ import 'package:quizzly/core/theme/strings.dart';
 import 'package:quizzly/core/theme/text_styles.dart';
 
 class ResultCard extends StatelessWidget {
+  final int wrongAnswerCount;
+  final int correctAnswerCount;
   const ResultCard({
+    required this.correctAnswerCount,
+    required this.wrongAnswerCount,
     super.key,
   });
 
@@ -31,7 +35,7 @@ class ResultCard extends StatelessWidget {
                   children: [
                     const Icon(Icons.circle, color: AppColors.green, size: AppDimens.d15),
                     AppDimens.w5,
-                    Text("10", style: AppTextStyles.dmSansMedium20.copyWith(color: AppColors.green))
+                    Text("$correctAnswerCount", style: AppTextStyles.dmSansMedium20.copyWith(color: AppColors.green))
                   ],
                 ),
                 Padding(
@@ -52,7 +56,7 @@ class ResultCard extends StatelessWidget {
                   children: [
                     const Icon(Icons.circle, color: AppColors.red, size: AppDimens.d15),
                     AppDimens.w5,
-                    Text("10", style: AppTextStyles.dmSansMedium20.copyWith(color: AppColors.red))
+                    Text("$wrongAnswerCount", style: AppTextStyles.dmSansMedium20.copyWith(color: AppColors.red))
                   ],
                 ),
                 Padding(
